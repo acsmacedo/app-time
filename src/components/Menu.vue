@@ -4,25 +4,21 @@
       <li>
         <router-link to="/">
           <i class="las la-home"></i>
-          <span>Home</span>
         </router-link>
       </li>
       <li>
         <router-link to="/date">
-          <i class="las la-calendar-day"></i>
-          <span>Date</span>
+          <i class="las la-calendar"></i>
         </router-link>
       </li>
       <li>
         <router-link to="/timer">
           <i class="las la-hourglass-half"></i>
-          <span>Timer</span>
         </router-link>
       </li>
       <li>
         <router-link to="/stopwatch">
           <i class="las la-stopwatch"></i>
-          <span>Stopwatch</span>
         </router-link>
       </li>
     </ul>
@@ -43,20 +39,27 @@ export default {
     right: 0;
     left: 0;
     background-color: var(--back2);
+    color: var(--text2);
     ul {
       display: flex;
       justify-content: center;
-      padding: 1rem 0;
     }
     a {
       display: flex;
       flex-direction: column;
       align-items: center;
-      margin: 0 0.5rem;
-      color: var(--text2);
+      padding: 1rem 0.75rem;
+      color: inherit;
+      &:hover {
+        background-color: var(--text1);
+        color: var(--back1);
+      }
+      &.link-active {
+        color: var(--display);
+      }
     }
     i {
-      font-size: 1.5em;
+      font-size: 2.5em;
     }
   }
 </style>

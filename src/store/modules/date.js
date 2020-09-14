@@ -94,7 +94,9 @@ export default {
       state.date = new Date(Date.now());
     },
     luckRandomChange(state) {
+      const luck = document.querySelector('.date__luck');
       const number = Math.floor(Math.random() * (state.luck.length - 1) ) + 1;
+      luck.style.display = 'block'
       state.luckRandom = number;
     }
   }
