@@ -50,16 +50,12 @@ export default {
       align-items: center;
       padding: 1rem 0.75rem;
       color: inherit;
-      &:hover {
-        background-color: var(--text1);
-        color: var(--back1);
-      }
       &.link-active {
         color: var(--display);
       }
     }
     i {
-      font-size: 2.5em;
+      font-size: 2.2em;
     }
   }
 </style>

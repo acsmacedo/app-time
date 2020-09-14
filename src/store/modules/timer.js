@@ -18,7 +18,25 @@ export default {
       const h1 = h > 0 ? h + 'h ' : '';
       const d1 = d > 0 ? d + 'd ' : '';
 
-      return `${d1}${h1}${m1}${s1}`;
+      const el = document.querySelector('.timer__value');
+      if (s1) el.classList.remove('set-m');
+      if (s1) el.classList.remove('set-h');
+      if (s1) el.classList.remove('set-d');
+
+      if (m1) el.classList.add('set-m');
+      if (h1) el.classList.add('set-h');
+      if (d1) el.classList.add('set-d');
+
+      if (time === 0) {
+        clearInterval(state.active);
+        state.active = null;
+      }
+
+      if (time) return `${d1}${h1}${m1}${s1}`;
+      if (!time) return `0s`;
+
+
+      
     }
   },
   mutations: {
@@ -40,9 +58,12 @@ export default {
       } else {
         state.time = state.timeInput;
       }
-      
+    },
+    cleanerTimer(state) {
+      state.time = 0;
+      state.timeInput = 0;
+      clearInterval(state.active);
+      state.active = null;
     }
-  },
-  actions: {
   }
 }

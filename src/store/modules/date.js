@@ -4,7 +4,6 @@ export default {
     date: new Date(Date.now()),
     luckRandom: 0,
     luck: [
-      '',
       'A vida trará coisas boas se tiveres paciência.',
       'Demonstre amor e alegria em todas as oportunidades e verás que a paz nasce dentro de você.',
       'Não compense na ira o que lhe falta na razão.',

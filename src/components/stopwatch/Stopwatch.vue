@@ -2,15 +2,15 @@
   <section class="stopwatch">
     <h1>Stopwatch</h1>
     <div class="stopwatch__time">
-      <span class="stopwatch__int">{{ timeRoundedInt }}</span>
-      <span class="stopwatch__dec">.{{ timeRoundedDec }}</span>
+      <span class="stopwatch__int">{{ timeInt }}</span>
+      <span class="stopwatch__dec">.{{ timeDec }}</span>
     </div>
     <div class="stopwatch__button">
       <button v-on:click="incrementTime">
         <span v-if="!active"><i class="las la-play"></i></span>
         <span v-else><i class="las la-pause" ></i></span>
       </button>
-      <button v-on:click="zerarTime">Reset</button>
+      <button v-on:click="resetTime">Reset</button>
     </div>
   </section>
 </template>
@@ -22,10 +22,13 @@ export default {
   name: 'Stopwatch',
   computed: {
     ...mapState('Stopwatch', ['active']),
-    ...mapGetters('Stopwatch', ['timeRoundedInt', 'timeRoundedDec'])
+    ...mapGetters('Stopwatch', ['timeInt', 'timeDec'])
   },
   methods: {
-    ...mapMutations('Stopwatch', ['incrementTime', 'zerarTime'])
+    ...mapMutations('Stopwatch', ['incrementTime', 'resetTime', 'cleanerTime'])
+  },
+  beforeDestroy() {
+    this.cleanerTime();
   }
 }
 </script>
@@ -34,15 +37,15 @@ export default {
   .stopwatch {
     text-align: center;
     &__time {
-      width: 10rem;
-      height: 10rem;
+      width: 12rem;
+      height: 12rem;
       display: flex;
       justify-content: center;
       align-items: center;
+      align-self: center;
       color: var(--display);
       border: 0.2rem solid var(--back2);
       border-radius: 1000rem;
-      align-self: center;
       margin-bottom: 2rem;
     }
     &__int {
@@ -55,6 +58,33 @@ export default {
       font-variant-numeric: tabular-nums;
       position: relative;
       top: 0.5rem;
+    }
+    &__time.set-m {
+      .stopwatch__int {
+        font-size: 2.5em;
+      }
+      .stopwatch__dec {
+        font-size: 1.5em;
+        top: 0.4rem;
+      }
+    }
+    &__time.set-h {
+      .stopwatch__int {
+        font-size: 2em;
+      }
+      .stopwatch__dec {
+        font-size: 1em;
+        top: 0.3rem;
+      }
+    }
+    &__time.set-d {
+      .stopwatch__int {
+        font-size: 1.5em;
+      }
+      .stopwatch__dec {
+        font-size: 0.8em;
+        top: 0.3rem;
+      }
     }
     &__button {
       display: flex;
@@ -76,10 +106,15 @@ export default {
       button:last-of-type {
         text-transform: uppercase;
         color: var(--text1);
+        background-color: var(--back2);
+        padding: 0.5rem 1.2rem;
+        border-radius: 1000rem;
+        letter-spacing: 0.2em;
+        font-size: 0.6em;
       }
       span {
-        width: 3em;
-        height: 3em;
+        width: 3.5em;
+        height: 3.5em;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -87,9 +122,7 @@ export default {
       }
       i {
         font-size: 2em;
-  
       }
     }
-    
   }
 </style>
