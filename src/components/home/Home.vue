@@ -2,7 +2,7 @@
   <section class="home">
     <h1>Toolbox</h1>
     <i class="las la-toolbox"></i>
-    <p>Toolbox é uma de caixa ferramentas úteis, que irá facilitar o seu dia.</p>
+    <p>Toolbox é uma de caixa ferramentas úteis que irá facilitar o seu dia.</p>
     <span>Desenvolvido por <a href="https://github.com/acsmacedo">Anderson Macedo</a></span>
   </section>
 </template>

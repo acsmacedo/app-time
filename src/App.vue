@@ -47,9 +47,9 @@ export default {
 
   body {
     --back1: #EDF0F2;
-    --back2: #BDC0C2;
-    --text1: #2E323C;
-    --text2: #3D424F;
+    --back2: #CDD0D2;
+    --text1: #3E424C;
+    --text2: #4B505D;
     --display: #6B5EBF;
     &.dark-mode {
       --back1: #2E323C;

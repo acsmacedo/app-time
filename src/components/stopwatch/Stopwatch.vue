@@ -2,8 +2,10 @@
   <section class="stopwatch">
     <h1>Stopwatch</h1>
     <div class="stopwatch__time" :class="{ active: active }">
-      <span class="stopwatch__int">{{ timeInt }}</span>
-      <span class="stopwatch__dec">.{{ timeDec }}</span>
+      <div class="stopwatch__content">
+        <span class="stopwatch__int">{{ timeInt }}</span>
+        <span class="stopwatch__dec">.{{ timeDec }}</span>
+      </div>
     </div>
     <div class="stopwatch__button">
       <button v-on:click="incrementTime">
@@ -11,9 +13,6 @@
         <span v-else><i class="las la-pause" ></i></span>
       </button>
       <button v-on:click="resetTime">Reset</button>
-    </div>
-    <div class="teste">
-      <p>5</p>
     </div>
   </section>
 </template>
@@ -28,10 +27,40 @@ export default {
     ...mapGetters('Stopwatch', ['timeInt', 'timeDec'])
   },
   methods: {
-    ...mapMutations('Stopwatch', ['incrementTime', 'resetTime', 'cleanerTime'])
+    ...mapMutations('Stopwatch', ['incrementTime', 'resetTime']),
+    fitText() {
+      const maxFontSize = 16;
+      let outputDiv = document.querySelector('.stopwatch__content');
+      let width = outputDiv.clientWidth;
+      let contentWidth = outputDiv.scrollWidth;
+      let fontSize = parseInt(window.getComputedStyle(outputDiv, null).getPropertyValue('font-size'),10);
+
+      if (contentWidth > width){
+        fontSize = Math.ceil(fontSize * width/contentWidth,10);
+        fontSize =  fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize - 1;
+        outputDiv.style.fontSize = fontSize+'px';   
+      } else {
+        while (contentWidth === width && fontSize < maxFontSize) {
+          fontSize = Math.ceil(fontSize) + 1;
+          fontSize = fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize;
+          outputDiv.style.fontSize = fontSize+'px';   
+      
+          width = outputDiv.clientWidth;
+          contentWidth = outputDiv.scrollWidth;
+          if (contentWidth > width){
+            outputDiv.style.fontSize = fontSize-1+'px'; 
+          }
+        }
+      }
+    }
+  },
+  watch: {
+    timeDec() {
+      this.fitText();
+    }
   },
   beforeDestroy() {
-    this.cleanerTime();
+    this.resetTime();
   }
 }
 </script>
@@ -40,57 +69,37 @@ export default {
   .stopwatch {
     text-align: center;
     &__time {
-      width: 12rem;
-      height: 12rem;
+      align-self: center;
+      border: 0.2rem solid var(--back2);
+      border-radius: 1000rem;
+      margin-bottom: 2.5rem;
+      margin-top: 0.5rem;
+      padding: 1.5rem;
+      &.active {
+        border: 0.2rem solid var(--display);
+      }
+    }
+    &__content {
+      width: 10rem;
+      height: 10rem;
       display: flex;
       justify-content: center;
       align-items: center;
       align-self: center;
       color: var(--display);
-      border: 0.2rem solid var(--back2);
-      border-radius: 1000rem;
-      margin-bottom: 2rem;
-      &.active {
-        border: 0.2rem solid var(--text1);
-      }
     }
     &__int {
-      font-size: 4em;
+      font-size: 5em;
       font-variant-numeric: tabular-nums;
+      white-space: nowrap;
     }
     &__dec {
-      font-size: 2em;
+      font-size: 2.5em;
       font-weight: 600;
       font-variant-numeric: tabular-nums;
       position: relative;
-      top: 0.5rem;
-    }
-    &__time.set-m {
-      .stopwatch__int {
-        font-size: 2.5em;
-      }
-      .stopwatch__dec {
-        font-size: 1.5em;
-        top: 0.4rem;
-      }
-    }
-    &__time.set-h {
-      .stopwatch__int {
-        font-size: 2em;
-      }
-      .stopwatch__dec {
-        font-size: 1em;
-        top: 0.3rem;
-      }
-    }
-    &__time.set-d {
-      .stopwatch__int {
-        font-size: 1.5em;
-      }
-      .stopwatch__dec {
-        font-size: 0.8em;
-        top: 0.3rem;
-      }
+      top: 0.35em;
+      white-space: nowrap;
     }
     &__button {
       display: flex;
@@ -122,16 +131,6 @@ export default {
       i {
         font-size: 2em;
       }
-    }
-  }
-
-  .teste {
-    width: 60px;
-    height: 60px;
-    background-color: #FFF;
-    p {
-      margin: 0;
-      font-size: 10vw;
     }
   }
 </style>

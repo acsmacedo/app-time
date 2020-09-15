@@ -1,8 +1,12 @@
 <template>
   <section class="timer">
     <h1>Timer</h1>
-    <input type="number" v-on:input="changeTimer" placeholder="Informe o tempo em segundos">
-    <div class="timer__value" :class="{ active: active }">{{ timeNumbers }}</div>
+    <input type="number" v-on:input="changeTimer" placeholder="Informe o tempo em segundos" min="0">
+    <div class="timer__value" id="timer" :class="{ active: active }">
+      <div class="timer__content">
+        <span>{{ timeNumbers }}</span>
+      </div>
+    </div>
     <div class="timer__button">
       <button v-on:click="decrementTimer">
         <span v-if="!active"><i class="las la-play"></i></span>
@@ -19,24 +23,45 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'Timer',
   computed: {
-    ...mapState('Timer', ['active']),
+    ...mapState('Timer', ['active', 'timeInput']),
     ...mapGetters('Timer', ['timeNumbers'])
   },
   methods: {
     ...mapMutations('Timer', ['changeTimer', 'decrementTimer', 'incrementTimer', 'cleanerTimer']),
-    changeClass() {
-      const el = document.querySelector('.timer__value');
-      const value = el.innerText;
-      if (value.includes('m')) el.classList.add('set-m');
-      if (value.includes('h')) el.classList.remove('set-m');
-      if (value.includes('h')) el.classList.add('set-h');
-      if (value.includes('d')) el.classList.remove('set-h');
-      if (value.includes('d')) el.classList.add('set-d');
+    fitText() {
+      
+      setTimeout(()=> {
+        const maxFontSize = 16;
+        let outputDiv = document.querySelector('.timer__content');
+        let width = outputDiv.clientWidth;
+        let contentWidth = outputDiv.scrollWidth;
+        let fontSize = parseInt(window.getComputedStyle(outputDiv, null).getPropertyValue('font-size'),10);
+        
+        if (contentWidth > width){
+          fontSize = Math.ceil(fontSize * width/contentWidth,10);
+          fontSize =  fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize - 1;
+          outputDiv.style.fontSize = fontSize+'px';   
+        } else {
+          while (contentWidth === width && fontSize < maxFontSize) {
+            fontSize = Math.ceil(fontSize) + 1;
+            fontSize = fontSize > maxFontSize  ? fontSize = maxFontSize  : fontSize;
+            outputDiv.style.fontSize = fontSize+'px';   
+        
+            width = outputDiv.clientWidth;
+            contentWidth = outputDiv.scrollWidth;
+            if (contentWidth > width){
+              outputDiv.style.fontSize = fontSize-1+'px'; 
+            }
+          }
+        }
+        
+      }, 1)
+
     }
   },
   watch: {
     timeNumbers() {
-      this.changeClass();
+      this.fitText();
     }
   },
   beforeDestroy() {
@@ -62,29 +87,28 @@ export default {
       }
     }
     &__value {
-      font-size: 4em;
-      font-variant-numeric: tabular-nums;
-      width: 12rem;
-      height: 12rem;
+      align-self: center;
+      border: 0.2rem solid var(--back2);
+      border-radius: 1000rem;
+      margin-bottom: 2.5rem;
+      margin-top: 0.5rem;
+      padding: 1.5rem;
+      &.active {
+        border: 0.2rem solid var(--display);
+      }
+    }
+    &__content {
+      width: 10rem;
+      height: 10rem;
       display: flex;
       justify-content: center;
       align-items: center;
       align-self: center;
       color: var(--display);
-      border: 0.2rem solid var(--back2);
-      border-radius: 1000rem;
-      margin-bottom: 2rem;
-      &.active {
-        border: 0.2rem solid var(--text1);
-      }
-      &.set-m {
-        font-size: 2.2em;
-      }
-      &.set-h {
-        font-size: 1.6em;
-      }
-      &.set-d {
-        font-size: 1.2em;
+      span {
+        font-size: 4em;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
       }
     }
     &__button {
