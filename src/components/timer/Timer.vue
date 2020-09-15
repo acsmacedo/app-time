@@ -13,7 +13,13 @@
         <span v-else><i class="las la-pause" ></i></span>
       </button>
       <button v-on:click="incrementTimer" :class="{ active: active }">{{active ? '+1:00' : 'reset'}}</button>
+      <button v-on:click="soundOff" v-if="sound">
+        <span><i class="las la-volume-off"></i></span>
+      </button>
     </div>
+    <audio id="audio" loop>
+      <source src="/alarm.mp3">
+    </audio>
   </section>
 </template>
 
@@ -22,12 +28,13 @@ import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'Timer',
+
   computed: {
-    ...mapState('Timer', ['active', 'timeInput']),
+    ...mapState('Timer', ['active', 'timeInput', 'sound']),
     ...mapGetters('Timer', ['timeNumbers'])
   },
   methods: {
-    ...mapMutations('Timer', ['changeTimer', 'decrementTimer', 'incrementTimer', 'cleanerTimer']),
+    ...mapMutations('Timer', ['changeTimer', 'decrementTimer', 'incrementTimer', 'cleanerTimer', 'soundOff']),
     fitText() {
       
       setTimeout(()=> {
@@ -114,14 +121,13 @@ export default {
     &__button {
       display: flex;
       justify-content: center;
-      button:first-of-type {
-        margin-right: 1rem;
+      button:nth-child(1) {
         span {
           background-color: var(--display);
           color: #FFFFFF;
         }
       }
-      button:last-of-type {
+      button:nth-of-type(2) {
         font-size: 0.6em;
         letter-spacing: 0.2em;
         text-transform: uppercase;
@@ -129,10 +135,17 @@ export default {
         background-color: var(--back2);
         padding: 0.5rem 1.2rem;
         border-radius: 1000rem;
+        margin-left: 1rem;
         &.active {
           letter-spacing: 0;
           font-size: 0.8em;
         }
+      }
+      button:nth-of-type(3) {
+        color: var(--text2);
+        background-color: var(--back2);
+        border-radius: 1000rem;
+        margin-left: 1rem;
       }
       span {
         width: 3.5em;

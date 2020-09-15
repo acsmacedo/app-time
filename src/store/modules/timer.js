@@ -3,7 +3,8 @@ export default {
   state: {
     time: 0,
     timeInput: 0,
-    active: null
+    active: null,
+    sound: false
   },
   getters: {
     timeNumbers(state) {
@@ -18,9 +19,16 @@ export default {
       const h1 = !d && h != 0 ? `${h}h ` : d && h > 0  && h < 10 ? `0${h}h ` : d && h >= 10 ? `${h}h ` : d ? '00h ' : '';
       const d1 = d > 0 ? `${d}d ` : '';
 
-      if (time === 0) {
+      if (state.active && time === 0) {
+        const audio = document.getElementById('audio');
+        const input = document.querySelector('.timer input');
+        state.sound = true;
+        audio.play();
         clearInterval(state.active);
         state.active = null;
+        input.value = '';
+        state.time = 0;
+        state.timeInput = 0;
       }
 
       if (time) return `${d1}${h1}${m1}${s1}`;
@@ -48,6 +56,12 @@ export default {
       } else {
         state.time = state.timeInput;
       }
+    },
+    soundOff(state) {
+      const audio = document.querySelector('#audio');
+      audio.pause();
+      audio.currentTime = 0;
+      state.sound = false;
     },
     cleanerTimer(state) {
       state.time = 0;
