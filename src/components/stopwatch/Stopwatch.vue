@@ -1,7 +1,7 @@
 <template>
   <section class="stopwatch">
     <h1>Stopwatch</h1>
-    <div class="stopwatch__time">
+    <div class="stopwatch__time" :class="{ active: active }">
       <span class="stopwatch__int">{{ timeInt }}</span>
       <span class="stopwatch__dec">.{{ timeDec }}</span>
     </div>
@@ -11,6 +11,9 @@
         <span v-else><i class="las la-pause" ></i></span>
       </button>
       <button v-on:click="resetTime">Reset</button>
+    </div>
+    <div class="teste">
+      <p>5</p>
     </div>
   </section>
 </template>
@@ -47,6 +50,9 @@ export default {
       border: 0.2rem solid var(--back2);
       border-radius: 1000rem;
       margin-bottom: 2rem;
+      &.active {
+        border: 0.2rem solid var(--text1);
+      }
     }
     &__int {
       font-size: 4em;
@@ -89,28 +95,21 @@ export default {
     &__button {
       display: flex;
       justify-content: center;
-      button {
-        background-color: transparent;
-        padding: 0;
-        margin: 0;
-        border: 0;
-        outline: 0;
-      }
       button:first-of-type {
         margin-right: 1rem;
         span {
           background-color: var(--display);
-          color: var(--text1);
+          color: #FFFFFF;
         }
       }
       button:last-of-type {
+        font-size: 0.6em;
+        letter-spacing: 0.2em;
         text-transform: uppercase;
         color: var(--text1);
         background-color: var(--back2);
         padding: 0.5rem 1.2rem;
         border-radius: 1000rem;
-        letter-spacing: 0.2em;
-        font-size: 0.6em;
       }
       span {
         width: 3.5em;
@@ -123,6 +122,16 @@ export default {
       i {
         font-size: 2em;
       }
+    }
+  }
+
+  .teste {
+    width: 60px;
+    height: 60px;
+    background-color: #FFF;
+    p {
+      margin: 0;
+      font-size: 10vw;
     }
   }
 </style>

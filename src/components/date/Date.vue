@@ -42,7 +42,7 @@ export default {
     &__luck {
       font-weight: 300;
       line-height: 1.5em;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.05em;
       padding: 0 3rem;
       position: relative;
       display: none;
@@ -63,20 +63,18 @@ export default {
       }
     }
     button {
-      font-size: 0.7em;
+      height: 46px;
+      font-size: 0.6em;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      margin: 3rem 0 1rem 0;
-      padding: 0.5rem 1rem;
-      align-self: center;
       color: var(--display);
       background-color: transparent;
-      border: 0.0625rem solid var(--display);
+      margin: 3rem 0 1rem 0;
+      padding: 0.5rem 1.2rem;
       outline: none;
-      &:hover {
-        color: var(--text1);
-        background-color: var(--display);
-      }
+      border: 0.0625rem solid var(--display);
+      border-radius: 1000rem;
+      align-self: center;
     }
   }
 </style>

@@ -13,18 +13,16 @@ export default {
       const h = ((time - s - (m * 60)) % 86400) / 3600
       const d = (time - s - (m * 60) - (h * 3600)) / 86400;
 
-      const s1 = s > 0 ? s + 's' : '';
-      const m1 = m > 0 ? m + 'm ' : '';
-      const h1 = h > 0 ? h + 'h ' : '';
+      const s1 = s > 0 ? s + 's' : d || h || m ? '00s' : '0s';
+      const m1 = m > 0 ? m + 'm ' : d || h ? '00m ' : '';
+      const h1 = h > 0 ? h + 'h ' : d ? '00h ' : '';
       const d1 = d > 0 ? d + 'd ' : '';
 
       const el = document.querySelector('.timer__value');
-      if (s1) el.classList.remove('set-m');
-      if (s1) el.classList.remove('set-h');
-      if (s1) el.classList.remove('set-d');
-
       if (m1) el.classList.add('set-m');
+      if (h1) el.classList.remove('set-m');
       if (h1) el.classList.add('set-h');
+      if (d1) el.classList.remove('set-h');
       if (d1) el.classList.add('set-d');
 
       if (time === 0) {
@@ -34,9 +32,6 @@ export default {
 
       if (time) return `${d1}${h1}${m1}${s1}`;
       if (!time) return `0s`;
-
-
-      
     }
   },
   mutations: {

@@ -36,7 +36,6 @@ export default {
     width: 100%;
     position: fixed;
     bottom: 0;
-    right: 0;
     left: 0;
     background-color: var(--back2);
     color: var(--text2);
