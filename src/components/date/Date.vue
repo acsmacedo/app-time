@@ -48,7 +48,7 @@ export default {
       position: relative;
       display: none;
       &::before, &::after {
-        font-family: sans-serif;
+        font-family: 'Lora', serif;
         font-size: 7em;
         color: var(--back2);
         position: absolute;
@@ -69,12 +69,11 @@ export default {
       font-size: 0.6em;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--display);
-      background-color: transparent;
+      color: var(--text1);
+      background-color: var(--back2);
       margin: 3rem 0 1rem 0;
       padding: 0.5rem 1.2rem;
       outline: none;
-      border: 0.0625rem solid var(--display);
       border-radius: 1000rem;
       align-self: center;
     }
