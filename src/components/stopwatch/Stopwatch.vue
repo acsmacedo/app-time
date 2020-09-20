@@ -89,14 +89,15 @@ export default {
       color: var(--display);
     }
     &__int {
+      font-family: 'Roboto Mono', monospace;
       font-size: 5em;
-      font-variant-numeric: tabular-nums;
+      font-weight: 400;
       white-space: nowrap;
     }
     &__dec {
+      font-family: 'Roboto Mono', monospace;
       font-size: 2.5em;
       font-weight: 600;
-      font-variant-numeric: tabular-nums;
       position: relative;
       top: 0.35em;
       white-space: nowrap;

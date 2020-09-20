@@ -87,10 +87,11 @@ export default {
       text-align: center;
       color: var(--text1);
       padding-bottom: 0.5rem;
-      border-bottom: 0.0625rem solid var(--back2);
+      border-bottom: 0.0625rem solid var(--text2);
       margin-bottom: 2rem;
       &::placeholder {
-        color: var(--back2);
+        color: var(--text2);
+        opacity: 0.3;
       }
     }
     &__value {
@@ -113,8 +114,8 @@ export default {
       align-self: center;
       color: var(--display);
       span {
+        font-family: 'Roboto Mono', monospace;
         font-size: 4em;
-        font-variant-numeric: tabular-nums;
         white-space: nowrap;
       }
     }

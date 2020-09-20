@@ -24,7 +24,7 @@ export default {
     p {
       font-weight: 300;
       line-height: 1.5em;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.07em;
       margin: 0;
     }
     span {
@@ -35,7 +35,7 @@ export default {
     }
     a {
       color: var(--text1);
-      font-weight: 600;
+      font-weight: 700;
       border-bottom: 0.0625rem dotted var(--text1);
     }
   }

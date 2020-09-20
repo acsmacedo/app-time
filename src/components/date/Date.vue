@@ -31,13 +31,14 @@ export default {
     text-align: center;
     color: var(--text2);
     &__time {
+      font-family: 'Roboto Mono', monospace;
       font-size: 3.2em;
-      font-variant-numeric: tabular-nums;
-      letter-spacing: 0.05em;
+      letter-spacing: -0.05em;
       color: var(--display);
     }
     &__day {
       font-size: 1.5em;
+      letter-spacing: 0.05em;
     }
     &__luck {
       font-weight: 300;
@@ -47,6 +48,7 @@ export default {
       position: relative;
       display: none;
       &::before, &::after {
+        font-family: sans-serif;
         font-size: 7em;
         color: var(--back2);
         position: absolute;

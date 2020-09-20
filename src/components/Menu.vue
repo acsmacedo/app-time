@@ -49,6 +49,7 @@ export default {
       align-items: center;
       padding: 1rem 0.75rem;
       color: inherit;
+      outline: none;
       &.link-active {
         color: var(--display);
       }

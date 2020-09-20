@@ -43,13 +43,13 @@ export default {
       'Todas as coisas são difíceis antes de se tornarem fáceis.',
       'Você pode encontrar a si mesmo fazendo ou dizendo coisas que você nunca imaginou possíveis.',
       'Se você se sente só é porque construiu muros ao invés de pontes.',
-      'Vencer é 90 por cento suor e 40 por cento técnica.',
+      'Vencer é 90% suor e 10% técnica.',
       'O amor está mais próximo do que você imagina.',
       'A vida coloca em nossa frente opções.',
       'Você é do tamanho do seu sonho.',
       'Pare de procurar eternamente; a felicidade está bem ao seu lado.',
       'Conhecimento é a única virtude e ignorância é o único vício.',
-      'O nosso primeiro e último amor é… o amor-próprio.',
+      'O nosso primeiro e último amor é... o amor-próprio.',
       'Deixe de lado as preocupações e seja feliz.',
       'A vontade das pessoas é a melhor das leis.',
       'Nós somos o que pensamos.',
@@ -64,10 +64,10 @@ export default {
       'Motivação não é sinônimo de transformação, mas um passo em sua direção.',
       'Inspiração vem dos outros. Motivação vem de dentro de nós.',
       'Não acredite mais em pessoas especiais, mas em momentos especiais com pessoas habituais.',
-      'Nada é por acaso…Acredite em seus sonhos e nos seus potenciais….Na vida tudo se supera..',
+      'Nada é por acaso... Acredite em seus sonhos e nos seus potenciais... Na vida tudo se supera...',
       'Acredite em milagres, mas não dependa deles.',
       'Você sempre será a sua melhor companhia!',
-      'Realize o óbvio, pense no improvável e conquiste o impossível Latumia.'
+      'Realize o óbvio, pense no improvável e conquiste o impossível.'
     ]
   },
   getters: {

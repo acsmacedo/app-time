@@ -33,7 +33,7 @@ export default {
 </script>
 
 <style lang="scss">
-  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;600&family=Roboto:wght@300;700&display=swap');
 
   #app {
     max-width: 450px;
@@ -47,7 +47,7 @@ export default {
 
   body {
     --back1: #EDF0F2;
-    --back2: #CDD0D2;
+    --back2: #DDE0E2;
     --text1: #3E424C;
     --text2: #4B505D;
     --display: #6B5EBF;
@@ -63,7 +63,7 @@ export default {
     margin: 0;
     padding: 0;
     background-color: var(--back1);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
   }
 
   section {
@@ -76,8 +76,8 @@ export default {
 
   h1 {
     font-size: 1em;
-    font-weight: 500;
-    letter-spacing: 0.05em;
+    font-weight: 700;
+    letter-spacing: 0.1em;
     padding: 0;
     margin: 0 0 2rem 0;
     color: var(--display);
@@ -107,8 +107,10 @@ export default {
   input[type="number"] {
     appearance: none;
     -webkit-appearance: none;
-    -moz-appearance: none;
-    &::-webkit-inner-spin-button,
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+    }
     &::-webkit-outer-spin-button {
       -webkit-appearance: none;
     }
